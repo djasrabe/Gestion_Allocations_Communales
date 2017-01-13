@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{05E57EC2-ED40-4146-A8C5-6F79817510E6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GesBudget</RootNamespace>
+    <AssemblyName>GesBudget</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccesBD.cs" />
+    <Compile Include="AjouterArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterArticle.Designer.cs">
+      <DependentUpon>AjouterArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AjouterBudget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterBudget.Designer.cs">
+      <DependentUpon>AjouterBudget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AjouterPayement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterPayement.Designer.cs">
+      <DependentUpon>AjouterPayement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AjouterRecette.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterRecette.Designer.cs">
+      <DependentUpon>AjouterRecette.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Apropos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Apropos.Designer.cs">
+      <DependentUpon>Apropos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bienvenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bienvenue.Designer.cs">
+      <DependentUpon>Bienvenue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Chapitre.cs" />
+    <Compile Include="AjouterChapitre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AjouterChapitre.Designer.cs">
+      <DependentUpon>AjouterChapitre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interface.Designer.cs">
+      <DependentUpon>Interface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListeArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListeArticle.Designer.cs">
+      <DependentUpon>ListeArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListeChapitre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListeChapitre.Designer.cs">
+      <DependentUpon>ListeChapitre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListePayement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListePayement.Designer.cs">
+      <DependentUpon>ListePayement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListePrevisionsBudgetaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListePrevisionsBudgetaire.Designer.cs">
+      <DependentUpon>ListePrevisionsBudgetaire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListeRecette.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListeRecette.Designer.cs">
+      <DependentUpon>ListeRecette.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifierArticle.Designer.cs">
+      <DependentUpon>ModifierArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RapportArticle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RapportArticle.Designer.cs">
+      <DependentUpon>RapportArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RapportChapitre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RapportChapitre.Designer.cs">
+      <DependentUpon>RapportChapitre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RapportGlobalPayement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RapportGlobalPayement.Designer.cs">
+      <DependentUpon>RapportGlobalPayement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RapportGlobalRecette.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RapportGlobalRecette.Designer.cs">
+      <DependentUpon>RapportGlobalRecette.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RapportJournalier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RapportJournalier.Designer.cs">
+      <DependentUpon>RapportJournalier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RapportPeriodique.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RapportPeriodique.Designer.cs">
+      <DependentUpon>RapportPeriodique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="test.Designer.cs">
+      <DependentUpon>test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlApropos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlApropos.Designer.cs">
+      <DependentUpon>UserControlApropos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Bienvenue.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Bienvenue.Designer.cs">
+      <DependentUpon>UserControl_Bienvenue.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AjouterArticle.resx">
+      <DependentUpon>AjouterArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AjouterBudget.resx">
+      <DependentUpon>AjouterBudget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AjouterChapitre.resx">
+      <DependentUpon>AjouterChapitre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AjouterPayement.resx">
+      <DependentUpon>AjouterPayement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AjouterRecette.resx">
+      <DependentUpon>AjouterRecette.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Apropos.resx">
+      <DependentUpon>Apropos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bienvenue.resx">
+      <DependentUpon>Bienvenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interface.resx">
+      <DependentUpon>Interface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListeArticle.resx">
+      <DependentUpon>ListeArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListeChapitre.resx">
+      <DependentUpon>ListeChapitre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListePayement.resx">
+      <DependentUpon>ListePayement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListePrevisionsBudgetaire.resx">
+      <DependentUpon>ListePrevisionsBudgetaire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListeRecette.resx">
+      <DependentUpon>ListeRecette.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifierArticle.resx">
+      <DependentUpon>ModifierArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="RapportArticle.resx">
+      <DependentUpon>RapportArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RapportChapitre.resx">
+      <DependentUpon>RapportChapitre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RapportGlobalPayement.resx">
+      <DependentUpon>RapportGlobalPayement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RapportGlobalRecette.resx">
+      <DependentUpon>RapportGlobalRecette.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RapportJournalier.resx">
+      <DependentUpon>RapportJournalier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RapportPeriodique.resx">
+      <DependentUpon>RapportPeriodique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="test.resx">
+      <DependentUpon>test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlApropos.resx">
+      <DependentUpon>UserControlApropos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Bienvenue.resx">
+      <DependentUpon>UserControl_Bienvenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

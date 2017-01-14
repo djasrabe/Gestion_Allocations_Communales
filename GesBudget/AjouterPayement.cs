@@ -17,14 +17,8 @@ namespace GesBudget
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd/MM/yyyy";
 
@@ -82,9 +76,7 @@ namespace GesBudget
             AccesBD obj1 = new AccesBD();
             DataTable datatable = obj1.Visualiser("select NumPayement,Date_Payement,NumArticle,Annee,Libelle_Payement,Montant from Payement ORDER BY NumPayement ASC");//Recharger la liste dans la dataGridview
             dataGridView1.DataSource = datatable;
-
             //
-
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
         }
@@ -103,7 +95,6 @@ namespace GesBudget
             comboBox2.Text = (dataGridView1.CurrentRow.Cells[3].Value).ToString();   //a
             dateTimePicker1.Value = Convert.ToDateTime(dataGridView1.CurrentRow.Cells[1].Value);
 
-          
             button3.Visible = true;
             button4.Visible = true;
             button1.Visible = false;
@@ -118,16 +109,12 @@ namespace GesBudget
             button4.Visible = false;
             button1.Visible = true;
 
-
-
             AccesBD obj = new AccesBD();
             try
             {
-
                 obj.Select("Update Payement set Date_Payement=DateValue('" + dateTimePicker1.Value.Date + "'), Montant=" + textBox1.Text + ",Libelle_Payement='" + textBox2.Text + "',NumArticle= '" + comboBox1.Text + "',Annee='" + comboBox2.Text + "' where NumPayement=" + dataGridView1.CurrentRow.Cells[0].Value);
 
                 MessageBox.Show("Modification du Payement reussie");
-
 
                 button3.Visible = false;
                 button4.Visible = false;
@@ -162,9 +149,7 @@ namespace GesBudget
             button3.Visible = false;
             button4.Visible = false;
             button1.Visible = true;
-
-
-
+            
             AccesBD obj = new AccesBD();
             try
             {
@@ -206,15 +191,9 @@ namespace GesBudget
         }
 
 
+        private void label1_Click(object sender, EventArgs e)
+        {
 
-
-
-
-
-
-
-
-
-
+        }
     }
 }

@@ -26,8 +26,6 @@ namespace GesBudget
         int iHeaderHeight = 0; //Used for the header height
 
         #endregion
-
-
         public RapportGlobalPayement()
         {
             InitializeComponent();
@@ -44,9 +42,7 @@ namespace GesBudget
 
             DataTable datatable = obj.Visualiser("select Chapitre.NumChapitre,Article.NumArticle,Article.Libelle,Budget.Montant as Budget,sum(Payement.Montant) as Total_Payement, (Budget.Montant-Total_Payement) as Reste , Round(((Total_Payement * 100)/Budget.Montant),2) as Taux_Realisation    FROM Chapitre,Article,Payement,Budget       WHERE     Chapitre.Type='Payement'  AND Budget.Annee='" + exercice + "' AND Payement.Annee='" + exercice + "' AND    Payement.NumArticle= Budget.NumArticle and Budget.NumArticle=Article.NumArticle and Article.NumChapitre=Chapitre.NumChapitre Group by Chapitre.NumChapitre,Article.NumArticle,Budget.NumArticle,Article.Libelle,Budget.Montant");
             dataGridView1.DataSource = datatable;
-
-
-
+            
             //AccesBD obj = new AccesBD();
             //DataTable datatable = obj.Visualiser("select Chapitre.NumChapitre,Article.NumArticle,Article.Libelle,Budget.Montant as Budget,sum(Recette.Montant) as Total_Recette,Round(((Total_Recette * 100)/Budget.Montant),2) as Taux_Realisation   FROM Chapitre,Article,Recette,Budget         WHERE     Chapitre.Type='Recette'  AND Budget.Annee='" + exercice + "' AND Recette.Annee='" + exercice + "' AND    Recette.NumArticle= Budget.NumArticle and Budget.NumArticle=Article.NumArticle and Article.NumChapitre=Chapitre.NumChapitre Group by Chapitre.NumChapitre,Article.NumArticle,Budget.NumArticle,Article.Libelle,Budget.Montant");
             //dataGridView1.DataSource = datatable;
@@ -62,11 +58,8 @@ namespace GesBudget
                 label7.Text = "00";
                 label7.Text = budget.ToString();
 
-
                 label11.Text = budget.ToString(); //doit afficher le reste sur budget,mais prend dabord la valeur du budget
-               
-            }
-            
+             }           
 
 
             if (payement != null)
@@ -74,8 +67,7 @@ namespace GesBudget
                 label8.Text = "00";
                 label8.Text = payement.ToString();
             }
-
-
+            
             try
             {
                 if (payement != null && budget != null)
@@ -83,16 +75,11 @@ namespace GesBudget
                     Double pourc = (Convert.ToDouble(payement) * 100) / Convert.ToDouble(budget);
                     label10.Text = Math.Round(pourc, 2).ToString() + "%";
                 }
-
-
                 if (payement != null && budget != null)
                 {
-
                     Double reste = (Convert.ToDouble(budget)) - (Convert.ToDouble(payement));
                     label11.Text = reste.ToString();
                 }
-
-
             }
             catch
             {
@@ -101,38 +88,26 @@ namespace GesBudget
                 label7.Text = "00";
                 label10.Text = "00";
                 MessageBox.Show("Cet Exercice Budgetaire n'a pas encore de Payement declaré ou de budget Inscrit"); 
-            }
-          
-
-
-
+            }       
             //
-
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[2] { new DataColumn("", typeof(string)), new DataColumn("", typeof(string)) });
             dt.Rows.Add("Budget Annuel:", label7.Text);
             dt.Rows.Add("Total Payements:", label8.Text);
             dt.Rows.Add("% Execution:", label10.Text);
-            dataGridView2.DataSource = dt;
-
-                    
+            dataGridView2.DataSource = dt;                 
 
         }
+
         private void RapportGlobalPayement_Load(object sender, EventArgs e)
-        {
-            
+        {            
             comboBox1.SelectedIndex = 5;   //par defaut annee 2015
             label2.Text = comboBox1.Text;
             
-            Rapport(comboBox1.Text);
-
-
-       
+            Rapport(comboBox1.Text);       
 
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
-          
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -146,29 +121,20 @@ namespace GesBudget
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {
-            
-
+        {         
             Rapport(comboBox1.Text);
-            label2.Text = comboBox1.Text;
-            
+            label2.Text = comboBox1.Text;            
         }
 
-
-
-        Bitmap bitmap,bitmap2;
+        Bitmap bitmap2;
         private void button1_Click(object sender, EventArgs e)
         {
-
-
- if (dataGridView1.RowCount!=0  && dataGridView1.ColumnCount != 0)
-            {
-               
+         if (dataGridView1.RowCount!=0  && dataGridView1.ColumnCount != 0)
+            {               
                 printPreviewDialog1.Document = printDocument1;
                 printPreviewDialog1.PrintPreviewControl.Zoom = 1;
 
                 printDocument1.DefaultPageSettings.Landscape = true;
-
 
                 //----------------------------------------------second dtgrvw
 
@@ -187,7 +153,6 @@ namespace GesBudget
                 //Show the Print Preview Dialog.
                 printPreviewDialog1.Document = printDocument1;
                 printPreviewDialog1.PrintPreviewControl.Zoom = 1;
-
                 try
                 { 
                     printPreviewDialog1.ShowDialog(); 
@@ -195,26 +160,19 @@ namespace GesBudget
                 catch 
                 {  
                     MessageBox.Show("Aucune Imprimante n'est installé."); 
-                };
-
-                
+                };                
             }
             else { MessageBox.Show("Aucune données à imprimer");}
                
-            
-            
+                        
         }
         //int printrow;
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-                    
-                
+        {                     
             if (bFirstPage == true)
             {
-                //
                 e.Graphics.DrawImage(bitmap2, 90, 170);
-
-
+                
                 string texte = "Mairie du 5e Arrondissement";
                 Font fonttext = new Font("Aparajita", 25, FontStyle.Bold);
                 e.Graphics.DrawString(texte, fonttext, Brushes.Black, new Point(350, 50));
@@ -228,10 +186,6 @@ namespace GesBudget
 
                 e.Graphics.DrawLine(pen, new Point(10, 100), new Point(1080, 100));
             }
-
-
-
-
 
             //-------------------------------------
 
@@ -284,16 +238,6 @@ namespace GesBudget
                     {
                         if (bNewPage)
                         {
-                            //Draw Header
-                            //e.Graphics.DrawString("Mairie du 5e Arrondissement",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),Brushes.Black, e.MarginBounds.Left,
-                            //    e.MarginBounds.Top - e.Graphics.MeasureString("Mairie du 5e Arrondissementy",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),
-                            //    e.MarginBounds.Width).Height - 13);
-                            //
-
-
-
                             String strDate = DateTime.Now.ToLongDateString() + "  " +
                                 DateTime.Now.ToShortTimeString();
 
@@ -317,8 +261,7 @@ namespace GesBudget
                                 iTopMargin = 240;   //e.MarginBounds.Top;      DJAS
                             }
                             else iTopMargin = 90;
-
-
+                            
 
                             foreach (DataGridViewColumn GridCol in dataGridView1.Columns)
                             {
@@ -409,11 +352,8 @@ namespace GesBudget
 
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
-            //label5.Text = "00";
-           
-        }
-
-       
+            //label5.Text = "00";           
+        }     
 
 
     }

@@ -39,45 +39,9 @@ namespace GesBudget
             label7.Text = "00";
             label10.Text = "00";
 
-
-
             AccesBD obj = new AccesBD();
             DataTable datatable = obj.Visualiser("select Chapitre.NumChapitre,Article.NumArticle,Article.Libelle,Budget.Montant as Budget,sum(Recette.Montant) as Total_Recette,(Budget.Montant-Total_Recette) as Reste, Round(((Total_Recette * 100)/Budget.Montant),2) as Taux_Realisation   FROM Chapitre,Article,Recette,Budget         WHERE     Chapitre.Type='Recette'  AND Budget.Annee='" + exercice + "' AND Recette.Annee='" + exercice + "' AND    Recette.NumArticle= Budget.NumArticle and Budget.NumArticle=Article.NumArticle and Article.NumChapitre=Chapitre.NumChapitre Group by Chapitre.NumChapitre,Article.NumArticle,Budget.NumArticle,Article.Libelle,Budget.Montant");
             dataGridView1.DataSource = datatable;
-
-            // ---------------- gerer le taux de realisation
-
-            //object[,] rec = new object[520, 520];
-            //object[,] Budget = new object[520, 520];
-            //object[,] Montant = new object[520, 520];
-
-
-            //int nligne = dataGridView1.Rows.Count;
-
-
-            //// dataGridView2.Columns.Add("taux", "% Execution");    on envoie cette ligne dans le load
-
-
-            //for (int i = 0; i < nligne - 1; i++)
-            //{
-            //    for (int j = 0; j < 5; j++)
-            //    {
-            //        rec[i, j] = (object)dataGridView1.Rows[i].Cells[j].Value;
-
-            //        if (j == 4)
-            //        {
-
-            //            Budget[i, j] = rec[i, j - 1]; //budget ligne 4
-            //            Montant[i, j] = rec[i, j];   //montant ligne 5
-
-            //            dataGridView2.Rows.Add((((Convert.ToDouble(Montant[i, j])) * 100) / Convert.ToDouble(Budget[i, j])).ToString(".##"));
-            //            //...Le (ToString(".##") est pour limiter à 2 chiffre apres la virgule
-
-            //        }
-            //    }
-            //}
-
-
 
             // ---------------- gerer l'affichage budget annuel
             AccesBD obj2 = new AccesBD();
@@ -93,14 +57,11 @@ namespace GesBudget
 
             }
 
-
-
             if (payement != null)
             {
                 label8.Text = "00";
                 label8.Text = payement.ToString();
             }
-
 
             try
             {
@@ -112,13 +73,9 @@ namespace GesBudget
 
                 if (payement != null && budget != null)
                 {
-
                     Double reste = (Convert.ToDouble(budget)) - (Convert.ToDouble(payement));
                     label11.Text = reste.ToString();
                 }
-
-
-
             }
             catch
             {
@@ -128,12 +85,7 @@ namespace GesBudget
                 label10.Text = "00";
                 MessageBox.Show("Cet Exercice Budgetaire n'a pas encore de Recette declaré ou de budget Inscrit");
             }
-
-
-
-
             //
-
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[2] { new DataColumn("", typeof(string)), new DataColumn("", typeof(string)) });
             dt.Rows.Add("Budget Annuel:", label7.Text);
@@ -152,8 +104,7 @@ namespace GesBudget
             Rapport(comboBox1.Text);
 
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
-            
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;           
 
         }
 
@@ -170,22 +121,17 @@ namespace GesBudget
             Rapport(comboBox1.Text);
             label2.Text = comboBox1.Text;
         }
-
-
-        Bitmap bitmap,bitmap2;
+        
+        Bitmap bitmap2;
         private void button1_Click(object sender, EventArgs e)  // bouton imprimer
         {
-
-
             if (dataGridView1.RowCount != 0 && dataGridView1.ColumnCount != 0)
             {
-
                 printPreviewDialog1.Document = printDocument1;
                 printPreviewDialog1.PrintPreviewControl.Zoom = 1;
 
                 printDocument1.DefaultPageSettings.Landscape = true;
-
-
+                
                 //----------------------------------------------second dtgrvw
 
                 int height2 = dataGridView2.Height;
@@ -212,21 +158,12 @@ namespace GesBudget
                 {
                     MessageBox.Show("Aucune Imprimante n'est installé.");
                 };
-
-
             }
-            else { MessageBox.Show("Aucune données à imprimer"); }
-                      
+            else { MessageBox.Show("Aucune données à imprimer"); }                      
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            ////Print the contents.
-            //e.Graphics.DrawImage(bitmap, 20, 180);
-            //e.Graphics.DrawImage(bitmap2, 880, 180);
-
-
-           
+        {           
             if (bFirstPage == true)
             {
                 e.Graphics.DrawImage(bitmap2, 90, 170);
@@ -245,9 +182,7 @@ namespace GesBudget
 
                 e.Graphics.DrawLine(pen, new Point(10, 100), new Point(1080, 100));
             }
-
-
-            
+                        
             //-------------------------------------
 
             try
@@ -306,14 +241,11 @@ namespace GesBudget
                             //    new Font(dataGridView1.Font, FontStyle.Bold),
                             //    e.MarginBounds.Width).Height - 13);
                             //
-
-
-
+                            
                             String strDate = DateTime.Now.ToLongDateString() + "  " +
                                 DateTime.Now.ToShortTimeString();
 
                             //String strDate = "Recettes de la periode";
-
 
                             //Draw Date
                             e.Graphics.DrawString(strDate,

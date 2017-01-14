@@ -37,8 +37,7 @@ namespace GesBudget
             DataTable datatable = obj.Visualiser("select NumPayement,Date_Payement,NumArticle,Annee As Exercice_Budgetaire,Libelle_Payement,Montant from Payement ORDER BY Date_Payement ASC");
             dataGridView1.DataSource = datatable;
             //
-
-
+            
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
         }
@@ -63,22 +62,11 @@ namespace GesBudget
             dataGridView1.DataSource = datatable;
         }
 
-        Bitmap bitmap;
+       //Bitmap;
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount != 0 && dataGridView1.ColumnCount != 0)
             {
-                ////Resize DataGridView to full height.
-                //int height = dataGridView1.Height;
-                //dataGridView1.Height = dataGridView1.RowCount * dataGridView1.RowTemplate.Height;
-
-                ////Create a Bitmap and draw the DataGridView on it.
-                //bitmap = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
-                //dataGridView1.DrawToBitmap(bitmap, new Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
-
-                ////Resize DataGridView back to original height.
-                //dataGridView1.Height = height;
-
                 //Show the Print Preview Dialog.
                 printPreviewDialog1.Document = printDocument1;
                 printPreviewDialog1.PrintPreviewControl.Zoom = 1;
@@ -90,7 +78,7 @@ namespace GesBudget
                 }
                 catch
                 {
-                    MessageBox.Show("Aucune Imprimante n'est installé.");
+                    MessageBox.Show("Aucune Imprimante n'est installée");
                 };
             }
             else { MessageBox.Show("Aucune donnée à imprimer"); }
@@ -108,7 +96,6 @@ namespace GesBudget
                 Font fonttext = new Font("Aparajita", 25, FontStyle.Bold);
                 e.Graphics.DrawString(texte, fonttext, Brushes.Black, new Point(350, 50));
 
-
                 string texte1 = "Liste de tous les Payements effectués, " + " " + "Exercice" + " " + comboBox1.Text;
                 Font fonttext1 = new Font("Verdana", 10, FontStyle.Bold);
                 e.Graphics.DrawString(texte1, fonttext1, Brushes.Blue, new Point(80, 120));
@@ -119,7 +106,6 @@ namespace GesBudget
             }
 
             //-------------------------------------
-
             try
             {
                 //Set the left margin
@@ -169,21 +155,11 @@ namespace GesBudget
                     {
                         if (bNewPage)
                         {
-                            //Draw Header
-                            //e.Graphics.DrawString("Mairie du 5e Arrondissement",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),Brushes.Black, e.MarginBounds.Left,
-                            //    e.MarginBounds.Top - e.Graphics.MeasureString("Mairie du 5e Arrondissementy",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),
-                            //    e.MarginBounds.Width).Height - 13);
-                            //
-
-
-
-                            String strDate = DateTime.Now.ToLongDateString() + "  " +
+                            
+                                String strDate = DateTime.Now.ToLongDateString() + "  " +
                                 DateTime.Now.ToShortTimeString();
 
                             //String strDate = "Recettes de la periode";
-
 
                             //Draw Date
                             e.Graphics.DrawString(strDate,
@@ -257,9 +233,7 @@ namespace GesBudget
             {
                 MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
-            }
-
-                       
+            }                       
         }
 
         private void printDocument1_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)

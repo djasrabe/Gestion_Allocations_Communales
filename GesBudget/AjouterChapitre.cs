@@ -18,11 +18,6 @@ namespace GesBudget
             InitializeComponent();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-          
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             object [] tabvaleur = new object[4];
@@ -30,12 +25,10 @@ namespace GesBudget
                     tabvaleur[1] = textBox2.Text;
                     //tabvaleur[2] = textBox3.Text;
                     tabvaleur[2] = comboBox1.Text;
-
-
+            
                     if (textBox1.Text != "" && textBox2.Text != ""  && comboBox1.Text != "")
                     {
                         AccesBD obj = new AccesBD();
-
                         try
                         {
                             obj.Insert("Chapitre", "NumChapitre,Libelle,Type", 3, tabvaleur);
@@ -50,8 +43,7 @@ namespace GesBudget
                         {
                             MessageBox.Show("Verifiez que le numero sois bien un chiffre, Sinon ce Chapitre existe deja ");
                         }
-
-
+                        
                         DataTable datatable = obj.Visualiser("select * from Chapitre ORDER BY NumChapitre ASC");//Recharger la liste dans la dataGridview
                         dataGridView1.DataSource = datatable;
                     }
@@ -71,9 +63,7 @@ namespace GesBudget
             AccesBD obj = new AccesBD();
             DataTable datatable = obj.Visualiser("select * from Chapitre ORDER BY NumChapitre ASC");
             dataGridView1.DataSource = datatable;
-
             //---
-
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
 
@@ -88,7 +78,6 @@ namespace GesBudget
         {
             comboBox2.Visible = true;
             textBox1.Visible = false;
-
             
             comboBox2.Text = (dataGridView1.CurrentRow.Cells[0].Value).ToString();
             textBox2.Text = (dataGridView1.CurrentRow.Cells[1].Value).ToString();
@@ -97,9 +86,7 @@ namespace GesBudget
             comboBox2.Enabled = false;
             button3.Visible = true;
             button4.Visible = true;
-            button1.Visible = false;
-
-           
+            button1.Visible = false;           
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -111,7 +98,6 @@ namespace GesBudget
 
             textBox1.Visible = true;
             textBox2.Visible = true;
-
             
             AccesBD obj = new AccesBD();
             try
@@ -130,20 +116,21 @@ namespace GesBudget
             dataGridView1.DataSource = datatable;
 
         }
+        private void button3_Click(object sender, EventArgs e)
+        {
 
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             comboBox2.Visible = false;
             button3.Visible = false;
             button4.Visible = false;
             button1.Visible = true;
-            textBox1.Visible = true;
-            
+            textBox1.Visible = true;            
             
             AccesBD obj = new AccesBD();
             try
-            {
-                
+            {                
                 obj.Select("Delete from Chapitre where NumChapitre=" + comboBox2.Text);
 
                 MessageBox.Show("Le Chapitre a bien été supprimé");

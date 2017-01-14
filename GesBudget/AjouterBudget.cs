@@ -22,16 +22,6 @@ namespace GesBudget
             this.Close();
         }
 
-        private void comboBox1_DropDown(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void comboBox2_DropDown(object sender, EventArgs e)
-        {
-            
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             object[] tabvaleur = new object[3];
@@ -39,17 +29,12 @@ namespace GesBudget
             tabvaleur[1] = comboBox2.Text;
             tabvaleur[2] = textBox2.Text;
             
-
-
             if (comboBox1.Text != "" && textBox2.Text != "" && comboBox2.Text != "")
             {
-
                 AccesBD obj = new AccesBD();
                 try
                 {
-                    
-                    obj.Insert("Budget", "NumArticle,Annee,Montant", 3, tabvaleur);
-                    
+                    obj.Insert("Budget", "NumArticle,Annee,Montant", 3, tabvaleur);                    
                     MessageBox.Show("Insertion du budget reussie");
 
                     textBox1.Text = "";
@@ -62,12 +47,8 @@ namespace GesBudget
                     MessageBox.Show("Verifiez bien les donnée saisies, Sinon le budget pour cet article et cet exercice existe déja ");
                 }
 
-
-
-
                 DataTable datatable = obj.Visualiser("select * from Budget ORDER BY NumArticle ASC");//Recharger la liste dans la dataGridview
                 dataGridView1.DataSource = datatable;
-
             }
             else
             {
@@ -81,16 +62,13 @@ namespace GesBudget
             AccesBD obj1 = new AccesBD();
             DataTable datatable = obj1.Visualiser("select * from Budget ORDER BY NumArticle ASC");
             dataGridView1.DataSource = datatable;
-
             //
-
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
         }
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
+        {            
             comboBox2.Enabled = false;
 
             comboBox1.Text = (dataGridView1.CurrentRow.Cells[0].Value).ToString();  //     numart    
@@ -115,13 +93,10 @@ namespace GesBudget
             AccesBD obj = new AccesBD();
             try
             {
-
                 obj.Select("Update Budget set Montant='" + textBox2.Text + "' where NumArticle=" + comboBox1.Text +"AND Annee='"+ comboBox2.Text+"'");
 
-                MessageBox.Show("Mise a jour reussie du Budget ");
-               
+                MessageBox.Show("Mise a jour reussie du Budget ");               
                 textBox2.Text = "";
-                
             }
             catch
             {
@@ -142,9 +117,7 @@ namespace GesBudget
             button3.Visible = false;
             button4.Visible = false;
             button1.Visible = true;
-
-
-
+            
             AccesBD obj = new AccesBD();
             try
             {
@@ -177,6 +150,15 @@ namespace GesBudget
             comboBox1.DataSource = obj.Visualiser("select NumArticle from Article ORDER BY NumArticle ASC");
             comboBox1.DisplayMember = "NumArticle";
             comboBox1.ValueMember = "NumArticle";
+        }
+        private void comboBox1_DropDown(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_DropDown(object sender, EventArgs e)
+        {
+
         }
     }
 }

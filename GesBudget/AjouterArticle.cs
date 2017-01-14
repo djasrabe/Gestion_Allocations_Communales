@@ -22,12 +22,10 @@ namespace GesBudget
             AccesBD obj = new AccesBD();
             comboBox1.DataSource = obj.Visualiser("select * from Chapitre ORDER BY NumChapitre ASC");
             comboBox1.DisplayMember = "NumChapitre";
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             object[] tabvaleur = new object[4];
             tabvaleur[0] = textBox1.Text;
             tabvaleur[1] = textBox2.Text;
@@ -37,13 +35,11 @@ namespace GesBudget
           
             if (textBox1.Text != "" && textBox2.Text != ""  && comboBox1.Text !="")
             {
-
                  AccesBD obj = new AccesBD();
                 try
                 {
                     obj.Insert("Article", "NumArticle,Libelle,NumChapitre", 3, tabvaleur);
                     MessageBox.Show("Insertion de l'article reussie");
-
                     textBox1.Text = "";
                     textBox2.Text = "";
                     //textBox3.Text = "";
@@ -54,19 +50,14 @@ namespace GesBudget
                     MessageBox.Show("Verifiez que le numero soit bien un chiffre, Sinon cet article existe deja ");
                 }
 
-
-
-
-                DataTable datatable = obj.Visualiser("select * from Article ORDER BY NumArticle ASC");//Recharger la liste dans la dataGridview
+                 DataTable datatable = obj.Visualiser("select * from Article ORDER BY NumArticle ASC");//Recharger la liste dans la dataGridview
                 dataGridView1.DataSource = datatable;
-
             }
             else
             {
                 MessageBox.Show("Entrez toutes les valeurs s'il vous plait");
             }
-
-          
+         
         }
 
         private void AjouterArticle_Load(object sender, EventArgs e)
@@ -74,9 +65,7 @@ namespace GesBudget
             AccesBD obj1 = new AccesBD();
             DataTable datatable = obj1.Visualiser("select * from Article ORDER BY NumArticle ASC");       
             dataGridView1.DataSource = datatable;
-
-            //
-
+             //
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
         }
@@ -118,9 +107,7 @@ namespace GesBudget
             }
 
             DataTable datatable = obj.Visualiser("select * from Article ORDER BY NumArticle ASC");//Recharger la liste dans la dataGridview
-            dataGridView1.DataSource = datatable;
-        
-        
+            dataGridView1.DataSource = datatable;              
         
         }
 
@@ -150,15 +137,11 @@ namespace GesBudget
 
             textBox1.Visible = true;
 
-
             AccesBD obj = new AccesBD();
             try
             {
-
                 obj.Select("Delete from Article where NumArticle=" + comboBox2.Text);
-
-                MessageBox.Show("L'Article a bien été supprimé");
-               
+                MessageBox.Show("L'Article a bien été supprimé");               
                 textBox2.Text = "";
                 comboBox1.Enabled = true;
             }
@@ -166,8 +149,7 @@ namespace GesBudget
             {
                 MessageBox.Show("Cet Article ne peut pas etre supprimé car il contient des Payements/Recettes qui lui sont liés ");
             }
-
-
+            
             DataTable datatable = obj.Visualiser("select * from Article ORDER BY NumArticle ASC");//Recharger la liste dans le dataGridview
             dataGridView1.DataSource = datatable;
         }

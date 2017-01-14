@@ -16,7 +16,7 @@ namespace GesBudget
         int val = 0;
 
         #region Member Variables
-        //const string strConnectionString = "data source=localhost;Integrated Security=SSPI;Initial Catalog=Northwind;";
+        
         StringFormat strFormat; //Used to format the grid rows.
         ArrayList arrColumnLefts = new ArrayList();//Used to save left coordinates of columns
         ArrayList arrColumnWidths = new ArrayList();//Used to save column widths
@@ -40,17 +40,12 @@ namespace GesBudget
             comboBox1.DisplayMember = "NumChapitre";
             comboBox1.ValueMember = "NumChapitre";
             val = (int)comboBox1.SelectedValue;
-            //---
-
-          
+            //---       
              
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             label5.Text = "00";
             label6.Text = "00";
             label7.Text = "00";
@@ -102,16 +97,10 @@ namespace GesBudget
 
                     if (Montant != null && Budget != null)
                     {
-
                         Double reste = (Convert.ToDouble(Budget)) - (Convert.ToDouble(Montant));
-                        label12.Text = reste.ToString();
-
-
-                        
+                        label12.Text = reste.ToString();                        
                     }
                     
-
-
                     if (Montant != null && Budget != null)
                     {
                         Double pourc = (Convert.ToDouble(Montant) * 100) / Convert.ToDouble(Budget);
@@ -143,30 +132,22 @@ namespace GesBudget
                         label6.Text = "00";
                         label6.Text = Budget.ToString();
 
-
                         label12.Text = Budget.ToString();// pour afficher reste sur budget, prend par defaut la valeur du budget avant d'etre ecrasé par la reponse de la soustraction plus en bas
                     }
 
-
                     if (Montant != null && Budget != null)
                     {
-
                         Double reste = (Convert.ToDouble(Budget)) - (Convert.ToDouble(Montant));
                         label12.Text = reste.ToString();
                     }
                     
-
-
                     if (Montant != null && Budget!=null )
                     {
-
                         Double pourc = (Convert.ToDouble(Montant) * 100) / Convert.ToDouble(Budget);
                         //label7.Text = pourc.ToString(".##") + "" + "%";
                         label7.Text = Math.Round(pourc, 2).ToString()  + "%";
                     }
-
                 }
-
                 dataGridView1.DataSource = datatable;
 
             }//fin du try
@@ -177,8 +158,6 @@ namespace GesBudget
                 MessageBox.Show("Assurez vous d'avoir choisi un numero de Chapitre et une Année dans la liste");
 
             }
-
-
             //
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[2] { new DataColumn("", typeof(string)), new DataColumn("", typeof(string)) });
@@ -186,13 +165,7 @@ namespace GesBudget
             dt.Rows.Add("Budget :", label6.Text);
             dt.Rows.Add("Reste sur Budget :", label12.Text);
             dt.Rows.Add("% Execution", label7.Text);
-            dataGridView2.DataSource = dt;
-
-
-
-
-
-
+            dataGridView2.DataSource = dt;            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -205,7 +178,6 @@ namespace GesBudget
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
 
-
             dataGridView2.Visible = false;
         }
 
@@ -217,28 +189,16 @@ namespace GesBudget
             comboBox2.ValueMember = "Annee";
         }
 
-        Bitmap bitmap,bitmap2;
+        Bitmap bitmap2;
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount!=0  && dataGridView1.ColumnCount != 0)
             {
-                ////Resize DataGridView to full height.
-                //int height = dataGridView1.Height;
-                //dataGridView1.Height = dataGridView1.RowCount * dataGridView1.RowTemplate.Height;
-
-                ////Create a Bitmap and draw the DataGridView on it.
-                //bitmap = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
-                //dataGridView1.DrawToBitmap(bitmap, new Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
-
-                ////Resize DataGridView back to original height.
-                //dataGridView1.Height = height;
-
-               // Show the Print Preview Dialog.
+                // Show the Print Preview Dialog.
                 printPreviewDialog1.Document = printDocument1;
                 printPreviewDialog1.PrintPreviewControl.Zoom = 1;
 
                 printDocument1.DefaultPageSettings.Landscape = true;
-
 
                 //----------------------------------------------second dtgrvw
 
@@ -291,10 +251,7 @@ namespace GesBudget
                 Pen pen = new Pen(Color.Gray);
 
                 e.Graphics.DrawLine(pen, new Point(10, 100), new Point(1080, 100));
-            }
-
-
-       
+            }      
           
 
             //-------------------------------------

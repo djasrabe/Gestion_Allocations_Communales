@@ -86,19 +86,14 @@ namespace GesBudget
             dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
         }
 
-        Bitmap bitmap, bitmap2, bitmapLabel, bitmapLabel2;
+        Bitmap bitmapLabel, bitmapLabel2;
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount != 0 && dataGridView1.ColumnCount != 0)
-            {
-                
-                //---------------------------------
-
+            {            
                 bitmapLabel = new Bitmap(this.label7.Width, this.label7.Height);
                 label7.DrawToBitmap(bitmapLabel, new Rectangle(0, 0, this.label7.Width, this.label7.Height));
-
-
-
+                
                 //Show the Print Preview Dialog.
                 printPreviewDialog1.Document = printDocument1;
                 printPreviewDialog1.PrintPreviewControl.Zoom = 1;
@@ -118,12 +113,9 @@ namespace GesBudget
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-          
+        {          
             //e.Graphics.DrawImage(bitmap, 100, 200);
             //e.Graphics.DrawImage(bitmapLabel, 180, 170);
-
-
 
             if (bFirstPage == true)
             {
@@ -146,11 +138,6 @@ namespace GesBudget
 
                 e.Graphics.DrawLine(pen, new Point(10, 100), new Point(1080, 100));
             }
-
-
-
-
-
             //-------------------------------------
 
             try
@@ -202,21 +189,10 @@ namespace GesBudget
                     {
                         if (bNewPage)
                         {
-                            //Draw Header
-                            //e.Graphics.DrawString("Mairie du 5e Arrondissement",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),Brushes.Black, e.MarginBounds.Left,
-                            //    e.MarginBounds.Top - e.Graphics.MeasureString("Mairie du 5e Arrondissementy",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),
-                            //    e.MarginBounds.Width).Height - 13);
-                            //
-
-
-
                             String strDate = DateTime.Now.ToLongDateString() + "  " +
                                 DateTime.Now.ToShortTimeString();
 
                             //String strDate = "Recettes de la periode";
-
 
                             //Draw Date
                             e.Graphics.DrawString(strDate,
@@ -296,27 +272,15 @@ namespace GesBudget
 
         }
 
-
-
-
-
-
-        //----------------------------------------------------------------------
-        
+        //----------------------------------------------------------------------        
 
         private void button4_Click(object sender, EventArgs e)
         {
             if (dataGridView2.RowCount != 0 && dataGridView2.ColumnCount != 0)
-            {
-                
-
+            {               
                 //-------------------------------------------dessinner aussi le label
                 bitmapLabel2 = new Bitmap(this.label8.Width, this.label8.Height);
-                label8.DrawToBitmap(bitmapLabel2, new Rectangle(0, 0, this.label8.Width, this.label8.Height));
-                //---------------------------------------
-
-
-               
+                label8.DrawToBitmap(bitmapLabel2, new Rectangle(0, 0, this.label8.Width, this.label8.Height));                           
 
 
                 //Show the Print Preview Dialog.
@@ -339,12 +303,7 @@ namespace GesBudget
         
         private void printDocument2_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            ////e.Graphics.DrawImage(bitmap2, 100, 200);
-            ////e.Graphics.DrawImage(bitmapLabel2, 180, 170);
-
-
-
-            if (bFirstPage == true)
+           if (bFirstPage == true)
             {
                 e.Graphics.DrawImage(bitmapLabel2, 180, 170);
 
@@ -365,12 +324,7 @@ namespace GesBudget
 
                 e.Graphics.DrawLine(pen, new Point(10, 100), new Point(1080, 100));
             }
-
-
-
-
-
-            //-------------------------------------
+                        //-------------------------------------
 
             try
             {
@@ -421,21 +375,10 @@ namespace GesBudget
                     {
                         if (bNewPage)
                         {
-                            //Draw Header
-                            //e.Graphics.DrawString("Mairie du 5e Arrondissement",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),Brushes.Black, e.MarginBounds.Left,
-                            //    e.MarginBounds.Top - e.Graphics.MeasureString("Mairie du 5e Arrondissementy",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),
-                            //    e.MarginBounds.Width).Height - 13);
-                            //
-
-
-
-                            String strDate = DateTime.Now.ToLongDateString() + "  " +
+                                String strDate = DateTime.Now.ToLongDateString() + "  " +
                                 DateTime.Now.ToShortTimeString();
 
                             //String strDate = "Recettes de la periode";
-
 
                             //Draw Date
                             e.Graphics.DrawString(strDate,
@@ -511,11 +454,8 @@ namespace GesBudget
             {
                 MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
-            }
+            }        
           
-
-
-
         }
 
         private void printDocument1_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)

@@ -77,9 +77,6 @@ namespace GesBudget
             label8.Text = (dateTimePicker1.Value.Date).ToString("dd/MM/yyyy");
             label9.Text = "Au";
             label10.Text = (dateTimePicker2.Value.Date).ToString("dd/MM/yyyy");
-
-
-
         }
 
 
@@ -98,29 +95,15 @@ namespace GesBudget
         }
 
 
-        Bitmap bitmap, bitmap2, bitmapLabel, bitmapLabel2;
+        Bitmap  bitmapLabel, bitmapLabel2;
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount != 0 && dataGridView1.ColumnCount != 0)
-            {
-            //    //Resize DataGridView to full height.
-            //    int height = dataGridView1.Height;
-            //    dataGridView1.Height = dataGridView1.RowCount * dataGridView1.RowTemplate.Height;
-
-            //    //Create a Bitmap and draw the DataGridView on it.
-            //    bitmap = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
-            //    dataGridView1.DrawToBitmap(bitmap, new Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
-
-            //    //Resize DataGridView back to original height.
-            //    dataGridView1.Height = height;
-
-
+            {         
                 //-------------------
                 bitmapLabel = new Bitmap(this.label11.Width, this.label11.Height);
                 label11.DrawToBitmap(bitmapLabel, new Rectangle(0, 0, this.label11.Width, this.label11.Height));
-
-
-
+                
                 //Show the Print Preview Dialog.
                 printPreviewDialog1.Document = printDocument1;
                 printPreviewDialog1.PrintPreviewControl.Zoom = 1;
@@ -140,13 +123,6 @@ namespace GesBudget
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            //e.Graphics.DrawImage(bitmap, 100, 200);
-            //e.Graphics.DrawImage(bitmapLabel, 180, 170);
-
-
-           
-
-
             if (bFirstPage == true)
             {
                 e.Graphics.DrawImage(bitmapLabel, 180, 170);
@@ -168,12 +144,7 @@ namespace GesBudget
 
                 e.Graphics.DrawLine(pen, new Point(10, 100), new Point(1080, 100));
             }
-
-
-
-
-
-            //-------------------------------------
+            //------------------------------------
 
             try
             {
@@ -204,7 +175,6 @@ namespace GesBudget
                     }
                 }
 
-
                 //Loop till all the grid rows not get printed
                 while (iRow <= dataGridView1.Rows.Count - 1)
                 {
@@ -224,16 +194,6 @@ namespace GesBudget
                     {
                         if (bNewPage)
                         {
-                            //Draw Header
-                            //e.Graphics.DrawString("Mairie du 5e Arrondissement",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),Brushes.Black, e.MarginBounds.Left,
-                            //    e.MarginBounds.Top - e.Graphics.MeasureString("Mairie du 5e Arrondissementy",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),
-                            //    e.MarginBounds.Width).Height - 13);
-                            //
-
-
-
                             String strDate = DateTime.Now.ToLongDateString() + "  " +
                                 DateTime.Now.ToShortTimeString();
 
@@ -317,32 +277,14 @@ namespace GesBudget
            }
         }
 
-
-
-
-
         private void button4_Click(object sender, EventArgs e)
         {
             if (dataGridView2.RowCount != 0 && dataGridView2.ColumnCount != 0)
-            {
-                ////Resize DataGridView to full height.
-                //int height = dataGridView2.Height;
-                //dataGridView2.Height = dataGridView2.RowCount * dataGridView2.RowTemplate.Height;
-
-                ////Create a Bitmap and draw the DataGridView on it.
-                //bitmap2 = new Bitmap(this.dataGridView2.Width, this.dataGridView2.Height);
-                //dataGridView2.DrawToBitmap(bitmap2, new Rectangle(0, 0, this.dataGridView2.Width, this.dataGridView2.Height));
-
-                ////Resize DataGridView back to original height.
-                //dataGridView2.Height = height;
-                
-
+            {               
                 //------------------------
                 bitmapLabel2 = new Bitmap(this.label13.Width, this.label13.Height);
                 label13.DrawToBitmap(bitmapLabel2, new Rectangle(0, 0, this.label13.Width, this.label13.Height));
-
-
-
+                
 
                 //Show the Print Preview Dialog.
                 printPreviewDialog2.Document = printDocument2;
@@ -363,34 +305,7 @@ namespace GesBudget
 
         private void printDocument2_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-        ////    e.Graphics.DrawImage(bitmap2, 100, 200);
-        ////    e.Graphics.DrawImage(bitmapLabel2, 180, 170);
-
-
-        //    string texte = "Mairie du 5e Arrondissement";
-        //    Font fonttext = new Font("Aparajita", 35, FontStyle.Bold);
-        //    e.Graphics.DrawString(texte, fonttext, Brushes.Black, new Point(260, 50));
-
-
-
-        //    string texte1 = DateTime.Now + ":" + " " + "Depenses effectuées dans la Periode du " + label3.Text + " " + "au" + " " + label7.Text;
-        //    Font fonttext1 = new Font("Verdana", 12, FontStyle.Regular);
-        //    e.Graphics.DrawString(texte1, fonttext1, Brushes.Blue, new Point(170, 100));
-
-
-
-        //    string texte2 = "TOTAL : " + " ";
-        //    Font fonttext2 = new Font("Verdana", 12, FontStyle.Bold);
-        //    e.Graphics.DrawString(texte2, fonttext2, Brushes.Black, new Point(100, 170));
-
-
-        //    Pen pen = new Pen(Color.Gray);
-
-        //    e.Graphics.DrawLine(pen, new Point(10, 150), new Point(1080, 150));
-
-
-            //---
-
+          //---
             if (bFirstPage == true)
             {
                 e.Graphics.DrawImage(bitmapLabel2, 180, 170);
@@ -412,13 +327,7 @@ namespace GesBudget
 
                 e.Graphics.DrawLine(pen, new Point(10, 100), new Point(1080, 100));
             }
-
-
-
-
-
             //-------------------------------------
-
             try
             {
                 //Set the left margin
@@ -468,16 +377,6 @@ namespace GesBudget
                     {
                         if (bNewPage)
                         {
-                            //Draw Header
-                            //e.Graphics.DrawString("Mairie du 5e Arrondissement",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),Brushes.Black, e.MarginBounds.Left,
-                            //    e.MarginBounds.Top - e.Graphics.MeasureString("Mairie du 5e Arrondissementy",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),
-                            //    e.MarginBounds.Width).Height - 13);
-                            //
-
-
-
                             String strDate = DateTime.Now.ToLongDateString() + "  " +
                                 DateTime.Now.ToShortTimeString();
 
@@ -501,7 +400,6 @@ namespace GesBudget
                                 iTopMargin = 200;   //e.MarginBounds.Top;      DJAS
                             }
                             else iTopMargin = 90;
-
 
 
                             foreach (DataGridViewColumn GridCol in dataGridView2.Columns)
@@ -558,14 +456,11 @@ namespace GesBudget
             {
                 MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
-            }
-
-          
+            }          
         }
 
         private void printDocument1_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-
             try
             {
                 strFormat = new StringFormat();

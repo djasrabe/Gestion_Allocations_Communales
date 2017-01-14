@@ -36,9 +36,7 @@ namespace GesBudget
             AccesBD obj = new AccesBD();
             DataTable datatable = obj.Visualiser("select * from Article order by NumArticle ASC");
             dataGridView1.DataSource = datatable;
-
             //
-
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
         }
@@ -53,22 +51,11 @@ namespace GesBudget
 
         }
 
-        Bitmap bitmap;
+       //itmap bitmap;
         private void button1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount != 0 && dataGridView1.ColumnCount != 0)
             {
-                ////Resize DataGridView to full height.
-                //int height = dataGridView1.Height;
-                //dataGridView1.Height = dataGridView1.RowCount * dataGridView1.RowTemplate.Height;
-
-                ////Create a Bitmap and draw the DataGridView on it.
-                //bitmap = new Bitmap(this.dataGridView1.Width, this.dataGridView1.Height);
-                //dataGridView1.DrawToBitmap(bitmap, new Rectangle(0, 0, this.dataGridView1.Width, this.dataGridView1.Height));
-
-                ////Resize DataGridView back to original height.
-                //dataGridView1.Height = height;
-
                 //Show the Print Preview Dialog.
                 printPreviewDialog1.Document = printDocument1;
                 printPreviewDialog1.PrintPreviewControl.Zoom = 1;
@@ -90,18 +77,11 @@ namespace GesBudget
         {
            // e.Graphics.DrawImage(bitmap, 100, 180);
 
-
-
-
-
             if (bFirstPage == true)
             {
-
-
                 string texte = "Mairie du 5e Arrondissement";
                 Font fonttext = new Font("Aparajita", 25, FontStyle.Bold);
                 e.Graphics.DrawString(texte, fonttext, Brushes.Black, new Point(350, 50));
-
 
                 string texte1 = "Liste de tous les Articles ";
                 Font fonttext1 = new Font("Verdana", 10, FontStyle.Bold);
@@ -163,21 +143,10 @@ namespace GesBudget
                     {
                         if (bNewPage)
                         {
-                            //Draw Header
-                            //e.Graphics.DrawString("Mairie du 5e Arrondissement",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),Brushes.Black, e.MarginBounds.Left,
-                            //    e.MarginBounds.Top - e.Graphics.MeasureString("Mairie du 5e Arrondissementy",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),
-                            //    e.MarginBounds.Width).Height - 13);
-                            //
-
-
-
-                            String strDate = DateTime.Now.ToLongDateString() + "  " +
+                                String strDate = DateTime.Now.ToLongDateString() + "  " +
                                 DateTime.Now.ToShortTimeString();
 
                             //String strDate = "Recettes de la periode";
-
 
                             //Draw Date
                             e.Graphics.DrawString(strDate,

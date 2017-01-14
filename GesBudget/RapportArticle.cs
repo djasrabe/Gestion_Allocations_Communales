@@ -64,11 +64,8 @@ namespace GesBudget
 
             string req = "select * from Payement where NumArticle=" + comboBox1.SelectedValue + "and Annee=" + "'" + comboBox2.Text + "'and  Date_Payement Between DateValue('" + dateTimePicker1.Value.Date + "') and DateValue('" + dateTimePicker2.Value.Date + "') ORDER BY Date_Payement";
             string req2 = "select * from Recette where NumArticle=" + comboBox1.SelectedValue + "and Annee=" + "'" + comboBox2.Text + "'and  Date_Recette  Between DateValue('" + dateTimePicker1.Value.Date + "') and DateValue('" + dateTimePicker2.Value.Date + "') ORDER BY Date_Recette"; ;
-
-                       
-            DataTable datatable=new DataTable();
-
-            
+                                       
+            DataTable datatable=new DataTable();                        
 
 
                 if (type == "Payement")
@@ -80,8 +77,7 @@ namespace GesBudget
                     {
                         label5.Text = "00";
                         label5.Text = Montant.ToString(); 
-                    }
-                    
+                    }                    
 
                     object Budget = obj2.Select("select Montant from Budget where NumArticle=" + comboBox1.SelectedValue + "and Annee=" + "'" + comboBox2.Text + "'");
                     if (Budget != null)
@@ -91,29 +87,21 @@ namespace GesBudget
 
                          label10.Text = Budget.ToString(); // ce label doit afficher le reste sur budget, ici il prend dabord le montant du budget avant d'etre ecrasé quand la soustraction sera effective juste en bas ds le code
                     }
-
-
+                    
                     if (Montant != null && Budget != null)
                     {
-
                         Double reste = (Convert.ToDouble(Budget)) - (Convert.ToDouble(Montant));
                         label10.Text = reste.ToString();
-                    }
-                    
-
-
+                    }                    
 
                     if (Montant != null && Budget != null)
                     {
                         Double pourc = (Convert.ToDouble(Montant) * 100) / Convert.ToDouble(Budget);
                         //label7.Text = pourc.ToString(".##") + "" + "%";
                         label7.Text = Math.Round(pourc, 2).ToString() + "%";
-                    }
+                    }                  
 
-                   
-
-                }
-                    //fin du if type=payement
+                }                    //fin du if type=payement
 
                 else
                 {
@@ -126,14 +114,12 @@ namespace GesBudget
                         label5.Text = Montant.ToString();
                     }
 
-
                     object Budget = obj2.Select("select Montant from Budget where NumArticle=" + comboBox1.SelectedValue + "and Annee=" + "'" + comboBox2.Text + "'");
                     if (Budget != null)
                     {
                         label6.Text = "00";
                         label6.Text = Budget.ToString();
                         //
-
                         label10.Text = Budget.ToString();// pour afficher reste sur budget, prend par defaut la valeur du budget avant d'etre ecrasé par la reponse de la soustraction plus en bas
                     }
 
@@ -144,49 +130,31 @@ namespace GesBudget
                         label10.Text = reste.ToString();
                     }
 
-
                     if (Montant != null && Budget != null)
                     {
                         Double pourc = (Convert.ToDouble(Montant) * 100) / Convert.ToDouble(Budget);
                         //label7.Text = pourc.ToString(".##") + "" + "%";
                         label7.Text = Math.Round(pourc, 2).ToString() + "%";
                     }
-
                 }
-
-                //
+                 //
                 dataGridView1.DataSource = datatable;
             }
-
-
+                
             catch
             {
                 MessageBox.Show("Assurez vous d'avoir choisi un numero d'Article et une Année dans la liste");
 
             }
 
-            
-            /////-------------------
-
-           
-
-
-            //--------------------------
            // dataGridView2.Columns.Add("hy","");//("taux", "% Execution");
-
-
             DataTable dt = new DataTable();
             dt.Columns.AddRange(new DataColumn[2]{new DataColumn("", typeof(string)),new DataColumn("", typeof(string))});
             dt.Rows.Add("total :", label5.Text);
             dt.Rows.Add("Budget :", label6.Text);
             dt.Rows.Add("Reste sur Budget :", label10.Text);
             dt.Rows.Add("% Execution", label7.Text);
-            dataGridView2.DataSource = dt;
-
-           
-
-            
-            
+            dataGridView2.DataSource = dt;                   
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -198,8 +166,7 @@ namespace GesBudget
         {
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
-
-
+            
             dataGridView2.Visible = false;
         }
 
@@ -212,7 +179,7 @@ namespace GesBudget
             
         }
 
-        Bitmap bitmap,bitmap2;
+        Bitmap bitmap2;
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount != 0 && dataGridView1.ColumnCount != 0)
@@ -220,13 +187,11 @@ namespace GesBudget
                 int height2 = dataGridView2.Height;
                 dataGridView2.Height = dataGridView2.RowCount * dataGridView2.RowTemplate.Height;
 
-
                 bitmap2 = new Bitmap(this.dataGridView2.Width, this.dataGridView2.Height);
                 dataGridView2.DrawToBitmap(bitmap2, new Rectangle(0, 0, this.dataGridView2.Width, this.dataGridView2.Height));
 
                 //Resize DataGridView back to original height.
                 dataGridView2.Height = height2;
-
                 //-----------------------------------------------
 
                 //Show the Print Preview Dialog.
@@ -269,12 +234,7 @@ namespace GesBudget
                 Pen pen = new Pen(Color.Gray);
 
                 e.Graphics.DrawLine(pen, new Point(10, 100), new Point(1080, 100));
-            }
-
-
-
-
-
+            }            
             //-------------------------------------
 
             try
@@ -305,8 +265,7 @@ namespace GesBudget
                         iLeftMargin += iTmpWidth;
                     }
                 }
-
-
+                
                 //Loop till all the grid rows not get printed
                 while (iRow <= dataGridView1.Rows.Count - 1)
                 {
@@ -325,23 +284,11 @@ namespace GesBudget
                     else
                     {
                         if (bNewPage)
-                        {
-                            //Draw Header
-                            //e.Graphics.DrawString("Mairie du 5e Arrondissement",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),Brushes.Black, e.MarginBounds.Left,
-                            //    e.MarginBounds.Top - e.Graphics.MeasureString("Mairie du 5e Arrondissementy",
-                            //    new Font(dataGridView1.Font, FontStyle.Bold),
-                            //    e.MarginBounds.Width).Height - 13);
-                            //
-
-
-
+                        {                                                       
                             String strDate = DateTime.Now.ToLongDateString() + "  " +
                                 DateTime.Now.ToShortTimeString();
 
                             //String strDate = "Recettes de la periode";
-
-
                             //Draw Date
                             e.Graphics.DrawString(strDate,
                                 new Font(dataGridView1.Font, FontStyle.Bold), Brushes.Black,
@@ -359,8 +306,7 @@ namespace GesBudget
                                 iTopMargin = 300;   //e.MarginBounds.Top;      DJAS
                             }
                             else iTopMargin = 90;
-
-
+                            
 
                             foreach (DataGridViewColumn GridCol in dataGridView1.Columns)
                             {
@@ -417,13 +363,10 @@ namespace GesBudget
                 MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
             }
-
-
         }
 
         private void printDocument1_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-
             try
             {
                 strFormat = new StringFormat();

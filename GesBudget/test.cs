@@ -39,7 +39,7 @@ namespace GesBudget
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
         }
-        Bitmap bitmap;
+        //Bitmap bitmap;
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount != 0 && dataGridView1.ColumnCount != 0)

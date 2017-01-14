@@ -26,7 +26,6 @@ namespace GesBudget
         {
             if (textBox1.Text != "" && textBox2.Text != "" && comboBox1.Text != "" && comboBox2.Text != "")
             {
-
                 AccesBD obj = new AccesBD();
                 try
                 {
@@ -37,7 +36,6 @@ namespace GesBudget
                     tabvaleur[2] = comboBox1.Text;
                     tabvaleur[3] = comboBox2.Text;
                     tabvaleur[4] = textBox2.Text;
-
                   
                     obj.Insert("Recette", "Date_Recette,Montant,NumArticle,Annee,Libelle_Recette", 5, tabvaleur);
 
@@ -53,17 +51,13 @@ namespace GesBudget
                 }
                 catch 
                 {
-                    MessageBox.Show("Verifiez que le Montant soit bien un chiffre");
-                
+                    MessageBox.Show("Verifiez que le Montant soit bien un chiffre");                
                 }
             }
             else
             {
-
                 MessageBox.Show("Entrez toutes les valeurs s'il vous plait");
-            }
-
-
+            }            
         }
 
         private void comboBox1_DropDown(object sender, EventArgs e)
@@ -90,13 +84,10 @@ namespace GesBudget
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             textBox1.Text = (dataGridView1.CurrentRow.Cells[5].Value).ToString();  //montant
-
             textBox2.Text = (dataGridView1.CurrentRow.Cells[4].Value).ToString();
             comboBox1.Text = (dataGridView1.CurrentRow.Cells[2].Value).ToString();  //annee          
             comboBox2.Text = (dataGridView1.CurrentRow.Cells[3].Value).ToString();   //a
-            dateTimePicker1.Value = Convert.ToDateTime(dataGridView1.CurrentRow.Cells[1].Value);
-
-            
+            dateTimePicker1.Value = Convert.ToDateTime(dataGridView1.CurrentRow.Cells[1].Value);            
 
             button3.Visible = true;
             button4.Visible = true;
@@ -111,17 +102,12 @@ namespace GesBudget
             button4.Visible = false;
             button1.Visible = true;
 
-
-
             AccesBD obj = new AccesBD();
             try
             {
-
                 obj.Select("Update Recette set Date_Recette=DateValue('" + dateTimePicker1.Value.Date + "'), Montant=" + textBox1.Text + ",Libelle_Recette='" + textBox2.Text + "',NumArticle= '" + comboBox1.Text + "',Annee='" + comboBox2.Text + "' where NumRecette=" + dataGridView1.CurrentRow.Cells[0].Value);
-
                 MessageBox.Show("Modification de la recette reussie");
-
-
+            
                 button3.Visible = false;
                 button4.Visible = false;
                 button1.Visible = true;
@@ -134,8 +120,7 @@ namespace GesBudget
             {
                 MessageBox.Show("Verifiez la saisi de vos données et remplissez tous les champs");
             }
-
-
+            
             DataTable datatable = obj.Visualiser("select NumRecette,Date_Recette,NumArticle,Annee,Libelle_Recette,Montant from Recette ORDER BY NumRecette ASC");//Recharger la liste dans la dataGridview
             dataGridView1.DataSource = datatable;
         }
@@ -147,14 +132,11 @@ namespace GesBudget
             button3.Visible = false;
             button4.Visible = false;
             button1.Visible = true;
-
-
-
+            
             AccesBD obj = new AccesBD();
             try
             {
                 obj.Select("Delete from Recette where NumRecette=" + dataGridView1.CurrentRow.Cells[0].Value);
-
                 MessageBox.Show("Suppression de la Recette reussie");
 
                 button3.Visible = false;
@@ -171,8 +153,7 @@ namespace GesBudget
             {
                 MessageBox.Show("Verifiez la saisi des données");
             }
-
-
+            
             DataTable datatable = obj.Visualiser("select NumRecette,Date_Recette,NumArticle,Annee,Libelle_Recette,Montant from Recette ORDER BY NumRecette ASC");//Recharger la liste dans la dataGridview
             dataGridView1.DataSource = datatable;
         }

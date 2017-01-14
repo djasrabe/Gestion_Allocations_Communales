@@ -21,39 +21,34 @@ namespace GesBudget
 
         public AccesBD()
           {
-             ConnectionStringSettings con = ConfigurationManager.ConnectionStrings["MaConnection"];              
+             ConnectionStringSettings con = ConfigurationManager.ConnectionStrings["MaConnection"];    //Chemin specifié dans App.config        
              connection.ConnectionString= con.ConnectionString;
-
               //connection.ConnectionString = @"provider=Microsoft.Jet.OLEDB.4.0; Data source=C:\Users\marina\Desktop\BD_Arrondissement.mdb";
 
             try
             {
-                connection.Open();
-                
+                connection.Open();                
             }
             catch 
             {
-                MessageBox.Show("L'application ne trouve pas la base de données.Veuillez specifier le chemin vers la base de données");
+                MessageBox.Show("Base de données introuvable.Veuillez bien specifier le chemin dans le fichier App.config");
+                Environment.Exit(1);
             }         
-
-           // MessageBox.Show("base ouverte");
-            commande.Connection = connection;
-            
+            // MessageBox.Show("base ouverte");
+            commande.Connection = connection;            
         }
 
         public object Select(string Requete)
         {
             commande.CommandText = Requete;
-            // commande.Connection = connection;
             object li = (object)commande.ExecuteScalar();
             return li;
         }
+
         public void Requete_Void(string Requete)
         {
             commande.CommandText = Requete;
-            // commande.Connection = connection;
             commande.ExecuteNonQuery();
-
         }
 
         public DataTable Visualiser(string Table, string Champ, string Condition)
@@ -73,17 +68,17 @@ namespace GesBudget
             //con.Close();
             return table;
         }
+
           public DataTable VisualiserParam()
         {
             adapter.SelectCommand = connection.CreateCommand();
             adapter.SelectCommand.CommandText = "Select * from Payement where Date_Payement between 1/01/2016 and 25/01/2016";
-              //commande.Parameters.Add(new SqlParameter("@Date_Creation", dateTimePicker1.Value));
+             //commande.Parameters.Add(new SqlParameter("@Date_Creation", dateTimePicker1.Value));
             adapter.Fill(table);
             //con.Close();
             return table;
         }
        
-
         public void Insert(string table, string GroupeChamp, int NbreChamp, object[] valeur)
         {
             int j = 1;
